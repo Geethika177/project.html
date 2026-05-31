@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport">
+    <title>Foods Inn - Restaurant & Delivery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            transition: background 0.4s, color 0.3s;
+        }
+
+        /* TOP HEADER */
+        .top-header {
+            background: #4d5848;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            width: 100%;
+            height: 110px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: relative;
+            z-index: 100;
+            transition: 0.4s;
+        }
+
+        .left-side {
+            display: flex;
+            gap: 20px;
+        }
+
+        .box {
+            background: #4d5848;
+            color: #f4c4a5;
+            padding: 18px 35px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        .box small {
+            display: block;
+            color: white;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+        .logo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: #4d5848;
+            color: #f4c4a5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: bold;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid #f4c4a5;
+            box-shadow: 0 0 0 6px rgba(244,196,165,0.15), 0 10px 25px rgba(0,0,0,0.25);
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+        }
+
+        .logo:hover {
+            transform: translate(-50%, -50%) scale(1.08);
+            box-shadow: 0 0 0 8px rgba(244,196,165,0.25), 0 15px 35px rgba(0,0,0,0.35);
+        }
+
+        .right-side {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .reservation {
+            background: #4d5848;
+            color: #f4c4a5;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .reservation:hover {
+            transform: scale(1.05);
+        }
+
+        .cart {
+            font-size: 38px;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .cart:hover {
+            transform: scale(1.1);
+        }
+
+        .menu {
+            width: 60px;
+            height: 60px;
+            background: #4d5848;
+            color: #f4c4a5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 35px;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .menu:hover {
+            transform: rotate(90deg);
+        }
+
+        /* SLIDER */
+        .slider {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slides {
+            display: flex;
+            height: 100%;
+            transition: transform 1s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100vh;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1) contrast(1.05);
+            display: block;
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            font-size: 40px;
+            width: 60px;
+            height: 80px;
+            cursor: pointer;
+            z-index: 50;
+            transition: 0.3s;
+        }
+        .prev:hover, .next:hover {
+            background: rgba(0,0,0,0.8);
+        }
+        .prev { left: 0; border-radius: 0 10px 10px 0; }
+        .next { right: 0; border-radius: 10px 0 0 10px; }
+
+        .dots {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: 0.2s;
+        }
+        .dot.active {
+            opacity: 1;
+            background: #f4c4a5;
+        }
+
+        /* FOOD CATEGORIES */
+        .food-categories {
+            width: 100%;
+            background: #5c6658;
+            display: flex;
+            align-items: center;
+            gap: 55px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 18px 25px;
+            scrollbar-width: none;
+            border-bottom: none;
+        }
+        .food-categories::-webkit-scrollbar { display: none; }
+
+        .category {
+            min-width: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+        .category:hover { transform: translateY(-5px); }
+        .category img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            background: transparent;
+            margin-bottom: 10px;
+            filter: brightness(1);
+        }
+        .category p {
+            color: #f4c4a5;
+            font-size: 15px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* DISPLAY CONTAINER FOR DYNAMIC FOOD */
+        #foodDisplay {
+            padding: 30px 20px;
+            background: #fefaf5;
+            transition: 0.3s;
+        }
+
+        /* CARD & FOOD ITEMS (FULL WIDTH) */
+        .card {
+            width: 100%;
+            max-width: 100% ;
+            background: white;
+            border-radius: 0 ;
+            padding: 20px;
+            box-shadow: none;
+        }
+        .resto-header { padding: 1rem 1.8rem 0.5rem 1.8rem; background: white; }
+        .resto-name {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c73f1e, #e67e22);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .offer-card {
+            background: #fef2e6;
+            margin: 1.2rem 1.8rem 0.8rem 1.8rem;
+            border-radius: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 1.2rem;
+            border-left: 6px solid #e67e22;
+        }
+        .discount { font-size: 1.7rem; font-weight: 800; color: #c73f1e; }
+        .offer-text { font-size: 0.9rem; font-weight: 600; color: #7a5a3a; }
+        .popular-section { padding: 0 1.8rem 1.8rem 1.8rem; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .section-sub {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid #e67e22;
+            padding-left: 0.8rem;
+        }
+        .item-list {
+            display: flex ;
+            flex-wrap: wrap ;
+            justify-content: center;
+            gap: 25px;
+        }
+        .menu-item {
+            width: 250px;
+            background: #faf9f7;
+            padding: 18px 12px;
+            border-radius: 24px;
+            transition: 0.25s;
+            border: 1px solid #f0eae2;
+            display: flex ;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+        .menu-item:hover {
+            background: #fff6ed;
+            border-color: #e6c9b2;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.05);
+        }
+        .menu-item img {
+            width: 110px ;
+            height: 110px ;
+            object-fit: cover;
+            border-radius: 18px;
+            margin: 12px 0 10px 0;
+        }
+        .item-name {
+            font-weight: 800;
+            color: #2d2a24;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .item-badge {
+            background: #e67e2210;
+            color: #c73f1e;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 40px;
+            border: 0.5px solid #e6c29a;
+            display: inline-block;
+        }
+        hr { margin: 0.2rem 1.8rem 0.8rem 1.8rem; border-top: 1px solid #efebe5; }
+        .delivery-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1.8rem 1.8rem 1.8rem;
+            color: #6b4c2c;
+            font-weight: 500;
+        }
+
+        /* SEARCH BAR */
+        .search-section {
+            width: 100%;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 22px;
+            flex-wrap: wrap;
+        }
+        .search-section input {
+            width: 500px;
+            max-width: 80%;
+            padding: 16px 22px;
+            border: 2px solid #4d5848;
+            border-radius: 50px;
+            outline: none;
+            font-size: 18px;
+        }
+        .search-section button {
+            background: #4d5848;
+            color: #f4c4a5;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .search-section button:hover {
+            background: #2d382b;
+            transform: scale(1.02);
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 350px;
+            height: 100vh;
+            background: #5c6658;
+            position: fixed;
+            top: 0;
+            right: -350px;
+            padding: 30px;
+            transition: 0.5s;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .sidebar.active { right: 0; }
+        .close-btn {
+            color: #f4c4a5;
+            font-size: 42px;
+            text-align: right;
+            cursor: pointer;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .close-btn::before { content: "✕"; }
+        .side-btn {
+            width: 100%;
+            border: none;
+            background: #d9af98;
+            color: #374636;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .side-btn:hover { transform: translateX(-8px); background: #cba07e; }
+        .gallery-btn { background: white; color: #3555cc; }
+        .dark-mode-text { color: #f4c4a5; font-size: 28px; margin-top: 20px; font-weight: bold; }
+        .toggle {
+            width: 75px;
+            height: 38px;
+            background: #ddd;
+            border-radius: 50px;
+            position: relative;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .circle {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 4px;
+            transition: 0.4s;
+        }
+        .toggle.active { background: black; }
+        .toggle.active .circle { left: 39px; }
+
+        /* OVERLAY (dark background) */
+        .dark-overlay {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.6);
+            top: 0;
+            left: 0;
+            display: none;
+            z-index: 999;
+        }
+        .dark-overlay.show { display: block; }
+
+        /* CART OVERLAY & DRAWER */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.4s;
+            z-index: 1200;
+        }
+        .cart-overlay.show { opacity: 1; visibility: visible; }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -390px;
+            width: 390px;
+            height: 100vh;
+            background: white;
+            transition: 0.5s;
+            z-index: 1300;
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-drawer.active { right: 0; }
+        .cart-top {
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 25px;
+        }
+        .close-cart {
+            font-size: 40px;
+            color: #7b8577;
+            cursor: pointer;
+        }
+        .close-cart::before { content: "✕"; }
+        .cart-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+        .cart-bag { font-size: 140px; margin-bottom: 25px; }
+        .cart-content h1 { font-size: 28px; color: #5f695b; margin-bottom: 18px; }
+        .cart-content p { color: #7a7a7a; line-height: 1.6; font-size: 18px; margin-bottom: 35px; }
+        .browse-btn {
+            background: #65705f;
+            color: #d8b39c;
+            border: none;
+            padding: 16px 35px;
+            border-radius: 8px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        .browse-btn:hover { background: #4e5749; transform: scale(1.02); }
+
+        /* DARK MODE GLOBAL */
+        body.dark { background: #121212; }
+        body.dark .navbar { background: #1e1e1e; }
+        body.dark .top-header { background: #0a0a0a; color: #e0cba0; }
+        body.dark .food-categories { background: #1f2a1c; }
+        body.dark .sidebar { background: #1e2a1b; }
+        body.dark .cart-drawer { background: #1c1c1c; }
+        body.dark .cart-content h1, body.dark .cart-content p { color: #f0f0f0; }
+        body.dark .card, body.dark .resto-header { background: #1e1e1e; }
+        body.dark .menu-item { background: #2c2c2c; border-color: #444; }
+        body.dark .menu-item:hover { background: #3a3a3a; }
+        body.dark .item-name { color: #ffe0c4; }
+        body.dark .delivery-row, body.dark .offer-text { color: #d6b575; }
+        body.dark .offer-card { background: #2d2b24; }
+        body.dark .search-section { background: #2b2b2b; }
+        body.dark #foodDisplay { background: #121212; }
+        body.dark .location-form { background: #1e1e1e; color: white; }
+        body.dark .location-form select { background: #2c2c2c; color: white; border-color: #555; }
+
+        /* FOOTER */
+        .footer {
+            width: 100%;
+            background: #060b12;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+        .footer-content {
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+        .footer-text {
+            color: #cfcfcf;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        .store-buttons img {
+            width: 180px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .store-buttons img:hover { transform: scale(1.05); }
+        .social span {
+            font-size: 38px;
+            color: white;
+            cursor: pointer;
+            margin: 0 12px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .social span:hover { transform: scale(1.2); }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .footer-links a:hover { color: #d2b48c; }
+        @media (max-width: 800px) {
+            .left-side .box { padding: 12px 20px; font-size: 16px; }
+            .logo { width: 90px; height: 90px; font-size: 20px; }
+            .navbar { height: 90px; padding: 0 15px; }
+            .menu-item { width: 220px; }
+        }
+        .location-overlay{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100vh;
+            background:rgba(0,0,0,0.65);
+            display:none;
+            justify-content:center;
+            align-items:center;
+            z-index:5000;
+        }
+
+        .location-form{
+            width:550px;
+            background:white;
+            border-radius:20px;
+            padding:30px;
+            text-align:center;
+        }
+
+        .popup-logo{
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            background:#4d5848;
+            color:#f4c4a5;
+            margin:auto;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:28px;
+            font-weight:bold;
+        }
+
+        .location-form h2{
+            margin-top:20px;
+            margin-bottom:20px;
+        }
+
+        .order-buttons{
+            display:flex;
+            justify-content:center;
+            gap:10px;
+            margin-bottom:25px;
+        }
+
+        .order-buttons button{
+            border:none;
+            padding:12px 25px;
+            border-radius:30px;
+            cursor:pointer;
+            font-weight:bold;
+        }
+
+        .order-buttons .active{
+            background:#4d5848;
+            color:#f4c4a5;
+        }
+
+        .location-form select{
+            width:100%;
+            padding:15px;
+            margin-top:10px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:18px;
+        }
+
+        .select-location-btn{
+            width:100%;
+            margin-top:25px;
+            padding:15px;
+            border:none;
+            background:#4d5848;
+            color:#f4c4a5;
+            border-radius:8px;
+            font-size:20px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="location-overlay" id="locationOverlay">
+        <div class="location-form">
+            <div class="popup-logo">FoodsInn</div>
+            <h2>Select your order type</h2>
+            <div class="order-buttons">
+                <button class="active" onclick="setOrderType('DELIVERY', this)">DELIVERY</button>
+                <button onclick="setOrderType('PICK-UP', this)">PICK-UP</button>
+            </div>
+            <p>Please select your location</p>
+            <select id="locationSelect">
+                <option value="DELHI COLONY">DELHI COLONY</option>
+                <option value="HYDERABAD">HYDERABAD</option>
+                <option value="MUMBAI">MUMBAI</option>
+            </select>
+            <button class="select-location-btn" onclick="closeLocationPopup()">Select</button>
+        </div>
+    </div>
+
+    <div class="top-header">All the prices are exclusives of sales tax</div>
+    <div class="navbar">
+        <div class="left-side">
+            <div class="box" onclick="openLocationPopup()">📍 Change Location<small id="selectedLocation">DELHI COLONY</small></div>
+            <div class="box">☎ 0213 8899998</div>
+        </div>
+        <div class="logo">FoodsInn</div>
+        <div class="right-side">
+            <button class="reservation" onclick="alert('📅 Reservation form opens soon!')">Reservation Form</button>
+            <div class="cart" onclick="openCart()">🛒</div>
+            <div class="menu" onclick="openSidebar()">☰</div>
+        </div>
+    </div>
+    
+    <!-- SLIDER -->
+    <div class="slider">
+        <div class="slides" id="slides">
+            <div class="slide"><img alt="banner" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1777241615-banner-b-jpg.jpeg%3Fver%3D10&amp;w=2048&amp;q=90"/></div>
+            <div class="slide"><img alt="breakfast" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1777241588-BREAKFAST-NEW.jpeg%3Fver%3D10&amp;w=2048&amp;q=90"/></div>
+            <div class="slide"><img alt="banner2" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1777241622-banner-a-jpg.jpeg%3Fver%3D10&amp;w=2048&amp;q=90"/></div>
+        </div>
+        <button class="prev" onclick="prevSlide()">❮</button>
+        <button class="next" onclick="nextSlide()">❯</button>
+        <div class="dots"><span class="dot active" onclick="goToSlide(0)"></span><span class="dot" onclick="goToSlide(1)"></span><span class="dot" onclick="goToSlide(2)"></span></div>
+    </div>
+    
+    <!-- FOOD CATEGORIES -->
+    <div class="food-categories">
+        <div class="category" onclick="showCategory('burgers')"><img alt="burger" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137936-Artboard%25201%2520copy%25204.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>BURGERS</p></div>
+        <div class="category" onclick="showCategory('sandwiches')"><img alt="sandwich" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137831-Artboard%25201%2520copy%25205.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>SANDWICHES</p></div>
+        <div class="category" onclick="showCategory('noodles')"><img alt="noodles" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137995-Artboard%25201%2520copy%252014.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>NOODLES</p></div>
+        <div class="category" onclick="showCategory('italian')"><img alt="italian" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137120-Artboard%25201%2520copy%25209.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>ITALIAN</p></div>
+        <div class="category" onclick="showCategory('chinese')"><img alt="chinese" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137874-Artboard%25201%2520copy%252015.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>CHINESE</p></div>
+        <div class="category" onclick="showCategory('rolls')"><img alt="rolls" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137084-Artboard%25201%2520copy%252017.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>ROLLS</p></div>
+        <div class="category" onclick="showCategory('beverages')"><img alt="beverages" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137772-Artboard%25201%2520copy%252022.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>HOT BEVERAGES</p></div>
+        <div class="category" onclick="showCategory('desserts')"><img alt="desserts" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1766293444-Dessert%2520Affair.jpg%3Fq%3D10&amp;w=256&amp;q=75"/><p>DESSERTS</p></div>
+    </div>
+    
+    <!-- SEARCH SECTION -->
+    <div class="search-section">
+        <input id="searchInput" placeholder="Search your favorite food..." type="text"/>
+        <button onclick="searchFood()">🔍 Search</button>
+    </div>
+    
+    <!-- DYNAMIC FOOD DISPLAY AREA -->
+    <div id="foodDisplay"></div>
+    
+    <!-- DEFAULT WELCOME CARD -->
+    <div class="card" id="defaultHomeCard">
+        <div class="resto-header"><div class="resto-name">Foods Inn</div></div>
+        <div class="offer-card"><div class="discount">25% <span>Off</span></div><div class="offer-text">ON DELIVERY 🛵</div></div>
+        <div class="popular-section"><div class="section-title">Popular Items</div><div class="section-sub">Most ordered right now</div><div class="item-list" id="popularItemsList"></div></div>
+        <hr/>
+        <div class="delivery-row"><span>🚚 Free delivery above $15</span><span class="delivery-tag">⏱ 25-35 min</span></div>
+    </div>
+    
+    <!-- SIDEBAR & OVERLAYS -->
+    <div class="dark-overlay" id="darkbg"></div>
+    <div class="sidebar" id="sidebar"><div class="close-btn" onclick="closeSidebar()"></div><button class="side-btn" onclick="alert('Reservation &amp; Decoration details')">Reservation And Decoration Policy</button><button class="side-btn" onclick="alert('FAQs')">Frequently Asked Questions</button><button class="side-btn" onclick="alert('Exclusive Offers')">Discounts And Offers</button><button class="side-btn" onclick="alert('About Foods Inn')">About Us</button><button class="side-btn gallery-btn" onclick="alert('Gallery - coming soon')">Gallery ▼</button><div class="dark-mode-text">Dark Mode</div><div class="toggle" id="toggle" onclick="toggleDark()"><div class="circle"></div></div></div>
+    
+    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+    <div class="cart-drawer" id="cartDrawer"><div class="cart-top"><div class="close-cart" onclick="closeCart()"></div></div><div class="cart-content"><div class="cart-bag">🛍</div><h1>Your Cart is Empty</h1><p>Looks like you haven't added anything to your cart yet. Start exploring and shop your favorite items!</p><button class="browse-btn" onclick="closeCart(); document.getElementById('defaultHomeCard').scrollIntoView({behavior:'smooth'});">Browse Product</button></div></div>
+    
+    <footer class="footer"><div class="footer-content"><div class="store-buttons"><img alt="google play" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"/><img alt="app store" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"/></div><div class="footer-links"><a href="#">Powered by Indolj</a><a href="#">Privacy Policy</a><a href="#">Reservation & Decoration Policy</a></div><div class="footer-text" style="margin-top:30px;">Check out the amazing food variety of Foods Inn - Karachi. We strive to bring the best experience of online ordering and delivery to our customers in Karachi.</div></div></footer>
+
+    <script>
+        // ----- LOCATION POPUP -----
+        let currentOrderType = 'DELIVERY';
+        function openLocationPopup() { document.getElementById('locationOverlay').style.display = 'flex'; }
+        function closeLocationPopup() { document.getElementById('selectedLocation').innerText = document.getElementById('locationSelect').value; document.getElementById('locationOverlay').style.display = 'none'; alert(`📍 Location updated`); }
+        function setOrderType(type, element) { currentOrderType = type; document.querySelectorAll('.order-buttons button').forEach(btn => btn.classList.remove('active')); element.classList.add('active'); }
+        
+        // ----- SLIDER -----
+        let currentSlide = 0;
+        const slides = document.getElementById("slides");
+        const dots = document.querySelectorAll(".dot");
+        const totalSlides = document.querySelectorAll(".slide").length;
+        let autoInterval;
+        function showSlide(){ slides.style.transform = "translateX(-" + (currentSlide * 100) + "%)"; dots.forEach(dot => dot.classList.remove("active")); dots[currentSlide].classList.add("active"); }
+        function nextSlide(){ currentSlide = (currentSlide + 1) % totalSlides; showSlide(); resetAutoSlide(); }
+        function prevSlide(){ currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; showSlide(); resetAutoSlide(); }
+        function goToSlide(index){ currentSlide = index; showSlide(); resetAutoSlide(); }
+        function resetAutoSlide(){ clearInterval(autoInterval); autoInterval = setInterval(() => { nextSlide(); }, 6000); }
+        autoInterval = setInterval(() => { nextSlide(); }, 6000);
+
+        // SIDEBAR / CART / DARK MODE
+        function openSidebar(){ document.getElementById("sidebar").classList.add("active"); document.getElementById("darkbg").classList.add("show"); }
+        function closeSidebar(){ document.getElementById("sidebar").classList.remove("active"); document.getElementById("darkbg").classList.remove("show"); }
+        function openCart(){ document.getElementById("cartDrawer").classList.add("active"); document.getElementById("cartOverlay").classList.add("show"); }
+        function closeCart(){ document.getElementById("cartDrawer").classList.remove("active"); document.getElementById("cartOverlay").classList.remove("show"); }
+        function toggleDark(){ document.body.classList.toggle("dark"); document.getElementById("toggle").classList.toggle("active"); }
+
+        // ------------- FIXED CATEGORY DATA (All strings properly wrapped) -------------
+        const categoryData = {
+            burgers: `<div class="card"><div class="popular-section"><div class="section-title">🍔 Burgers</div><div class="section-sub">Juicy & grilled</div><div class="item-list">
+                <div class="menu-item"><span class="item-name">Classic Beef Burger</span><span class="item-badge">⭐ 4.8 | $8.9</span><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&h=200&fit=crop" alt="burger"></div>
+                <div class="menu-item"><span class="item-name">Cheesy Chicken Burger</span><span class="item-badge">🔥 4.9 | $9.5</span><img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=200&h=200&fit=crop" alt="burger"></div>
+                <div class="menu-item"><span class="item-name">Spicy Crunch Burger</span><span class="item-badge">⭐ 4.7 | $8.2</span><img src="https://images.unsplash.com/photo-1550317138-10000687a72b?w=200&h=200&fit=crop" alt="burger"></div>
+                <div class="menu-item"><span class="item-name">Aloo Tikki Burger</span><span class="item-badge">🔥4.6|$9.5</span><img src="https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?w=200&h=200&fit=crop" alt="burger"></div>
+                <div class="menu-item"><span class="item-name">Paneer Tikka Burger</span><span class="item-badge">🔥 4.9 | $9.5</span><img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=200&h=200&fit=crop" alt="burger"></div>
+                <div class="menu-item"><span class="item-name">Pav Bhaji Burger</span><span class="item-badge">⭐ 4.7 | $8.2</span><img src="https://i.pinimg.com/474x/a4/0f/46/a40f46b7d37ea035561455ef1df399c9.jpg" alt="burger"></div>
+            </div></div></div>`,
+            sandwiches: `<div class="card"><div class="popular-section"><div class="section-title">🥪 Sandwiches</div><div class="section-sub">Fresh & healthy</div><div class="item-list">
+                <div class="menu-item"><span class="item-name">Grilled Chicken Sandwich</span><span class="item-badge">⭐ 4.7 | $7.2</span><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop" alt="sandwich"></div>
+                <div class="menu-item"><span class="item-name">Paneer Tikka Sandwich</span><span class="item-badge">⭐ 4.6 | $6.5</span><img src="https://images.unsplash.com/photo-1553909489-cd47e0907980?w=200&h=200&fit=crop" alt="sandwich"></div>
+                <div class="menu-item"><span class="item-name">Club Sandwich</span><span class="item-badge">⭐ 4.6 | $6.5</span><img src="https://images.unsplash.com/photo-1553909489-cd47e0907980?w=200&h=200&fit=crop" alt="sandwich"></div>
+                <div class="menu-item"><span class="item-name">Malai Club Sandwich</span><span class="item-badge">⭐ 4.6 | $6.5</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1749482151-MALAI%202-JUNE-2025%20(2).JPG%3Fq%3D10&w=640&q=75" alt="sandwich"></div>
+                <div class="menu-item"><span class="item-name">Fajita Sandwich</span><span class="item-badge">⭐ 4.6 | $6.5</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1746644955-306%20FAJITA%20SANDWICH.JPG%3Fq%3D10&w=640&q=75" alt="sandwich"></div>
+            </div></div></div>`,
+            noodles: `<div class="card"><div class="popular-section"><div class="section-title">🍜 Noodles</div><div class="section-sub">Asian style</div><div class="item-list">
+                <div class="menu-item"><span class="item-name">Hakka Noodles</span><span class="item-badge">⭐ 4.7 | $8.0</span><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&h=200&fit=crop" alt="noodles"></div>
+                <div class="menu-item"><span class="item-name">Singapore Noodles</span><span class="item-badge">⭐ 4.8 | $9.2</span><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=200&h=200&fit=crop" alt="noodles"></div>
+                <div class="menu-item"><span class="item-name">Chicken Chowmein</span><span class="item-badge">⭐ 4.8 | $9.2</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752779236-CHICKEN%20CHOWMEIN.JPG%3Fq%3D10&w=640&q=75" alt="noodles"></div>
+                <div class="menu-item"><span class="item-name">Vegetable Chowmein</span><span class="item-badge">⭐ 4.8 | $9.2</span><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=200&h=200&fit=crop" alt="noodles"></div>
+            </div></div></div>`,
+            italian: `<div class="card"><div class="popular-section"><div class="section-title">🇮🇹 Italian</div><div class="section-sub">Italian specials</div><div class="item-list">
+                <div class="menu-item"><span class="item-name">Alfredo Pasta</span><span class="item-badge">⭐ 4.9 | $11.9</span><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop" alt="pasta"></div>
+                <div class="menu-item"><span class="item-name">Margherita Pizza</span><span class="item-badge">⭐ 4.8 | $10.5</span><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop" alt="pizza"></div>
+                <div class="menu-item"><span class="item-name">White Sauce Pasta</span><span class="item-badge">⭐ 4.7 | $10.2</span><img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=200&h=200&fit=crop" alt="pasta"></div>
+                <div class="menu-item"><span class="item-name">Vellutata di zucca</span><span class="item-badge">⭐ 4.7 | $10.2</span><img src="https://www.tasteatlas.com/images/dishes/071514f0f6084fddba288c3756d88a9a.jpg?mw=1300" alt="soup"></div>
+                <div class="menu-item"><span class="item-name">Kürbis Suppe</span><span class="item-badge">⭐ 4.7 | $10.2</span><img src="https://www.tasteatlas.com/images/dishes/43d61c40dd0043d09b7941475cc39eed.jpg?mw=1300" alt="soup"></div>
+            </div></div></div>`,
+            chinese: `<div class="card"><div class="popular-section"><div class="section-title">🥢 Chinese</div><div class="section-sub">Spicy wok</div><div class="item-list">
+                <div class="menu-item"><span class="item-name">Fried Rice</span><span class="item-badge">⭐ 4.8 | $8.4</span><img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=200&h=200&fit=crop" alt="rice"></div>
+                <div class="menu-item"><span class="item-name">Manchurian</span><span class="item-badge">⭐ 4.7 | $7.9</span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGb18ykYxTxIiIOGbIiTRaRJs2VsATNmvGkQ&s" alt="manchurian"></div>
+                <div class="menu-item"><span class="item-name">Schezwan Noodles</span><span class="item-badge">⭐ 4.6 | $9.1</span><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&h=200&fit=crop" alt="noodles"></div>
+                <div class="menu-item"><span class="item-name">Ma Po Tofu</span><span class="item-badge">⭐ 4.8 | $8.4</span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh1-KlmDjT8RlGFNPirfXozaWJoNnVLEwVs6l0cpsJmeh8PREDs6WOjMUSPFcQ_pUCJFseWLRDT6mnwdohIc-z9-nsEzeUiaqbjsMq1Q&s=10" alt="tofu"></div>
+                <div class="menu-item"><span class="item-name">Dim Sum</span><span class="item-badge">⭐ 4.7 | $7.9</span><img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=200&h=200&fit=crop" alt="dimsum"></div>
+                <div class="menu-item"><span class="item-name">Wonton Soup</span><span class="item-badge">⭐ 4.6 | $9.1</span><img src="https://www.allrecipes.com/thmb/oiO3k3uir05bhdLXCDh9lnEob8Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/ALR-13199-wonton-soup-VAT-4x3-31bd1ef2795144ee93fed67a1cf3743d.jpg" alt="soup"></div>
+            </div></div></div>`,
+            rolls: `<div class="card"><div class="popular-section"><div class="section-title">🌯 Rolls</div><div class="section-sub">Wrap & Roll</div><div class="item-list">
+                <div class="menu-item"><span class="item-name">Chicken Roll</span><span class="item-badge">⭐ 4.8 | $6.5</span><img src="https://images.unsplash.com/photo-1530469912745-a215c6b256ea?w=200&h=200&fit=crop" alt="roll"></div>
+                <div class="menu-item"><span class="item-name">Paneer Roll</span><span class="item-badge">⭐ 4.6 | $5.9</span><img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=200&h=200&fit=crop" alt="roll"></div>
+                <div class="menu-item"><span class="item-name">Crispy Roll</span><span class="item-badge">⭐ 4.8 | $6.5</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752786013-CRISPY%20ROLL.JPG%3Fq%3D10&w=640&q=75" alt="roll"></div>
+                <div class="menu-item"><span class="item-name">Chicken Cheese Roll</span><span class="item-badge">⭐ 4.6 | $5.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752785975-CHICKEN%20CHEESE%20ROLL.JPG%3Fq%3D10&w=640&q=75" alt="roll"></div>
+                <div class="menu-item"><span class="item-name">Malai Boti Roll</span><span class="item-badge">⭐ 4.8 | $6.5</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752785952-MALAI%20BOTI%20ROLL.JPG%3Fq%3D10&w=640&q=75" alt="roll"></div>
+                <div class="menu-item"><span class="item-name">Beef Boti Roll</span><span class="item-badge">⭐ 4.6 | $5.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752785905-BEEF%20BOTI%20ROLL.JPG%3Fq%3D10&w=640&q=75" alt="roll"></div>
+            </div></div></div>`,
+            beverages: `<div class="card"><div class="popular-section"><div class="section-title">☕ Hot Beverages</div><div class="section-sub">Warm & cozy</div><div class="item-list">
+                <div class="menu-item"><span class="item-name">Cappuccino</span><span class="item-badge">⭐ 4.9 | $3.9</span><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop" alt="coffee"></div>
+                <div class="menu-item"><span class="item-name">Green Tea</span><span class="item-badge">⭐ 4.5 | $2.9</span><img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=200&h=200&fit=crop" alt="tea"></div>
+                <div class="menu-item"><span class="item-name">Cafe Latte</span><span class="item-badge">⭐ 4.9 | $3.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1746715040-DSC08985.JPG%3Fq%3D10&w=640&q=75" alt="latte"></div>
+                <div class="menu-item"><span class="item-name">Strawberry Crunch Royale</span><span class="item-badge">⭐ 4.5 | $2.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1779913909-1314STRAWBERRYCRUNCHROYALE.jpg%3Fq%3D10&w=640&q=75" alt="shake"></div>
+                <div class="menu-item"><span class="item-name">Vanilla Caramel Shake</span><span class="item-badge">⭐ 4.9 | $3.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1746724143-DSC08924.JPG%3Fq%3D10&w=640&q=75" alt="shake"></div>
+                <div class="menu-item"><span class="item-name">Oreo Frappe</span><span class="item-badge">⭐ 4.5 | $2.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1749407620-DSC09824.0.JPG%3Fq%3D10&w=640&q=75" alt="frappe"></div>
+            </div></div></div>`,
+            desserts: `<div class="card"><div class="popular-section"><div class="section-title">🍰 Desserts</div><div class="section-sub">Sweet tooth</div><div class="item-list">
+                <div class="menu-item"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=200&fit=crop" alt="cake"><span class="item-name">Chocolate Cake</span><span class="item-badge">⭐ 4.9 | $5.5</span></div>
+                <div class="menu-item"><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1767985935-1425%20KUNAFA.JPG%3Fq%3D10&w=640&q=75" alt="kunafa"><span class="item-name">Kunafa</span><span class="item-badge">⭐ 4.6 | $3.5</span></div>
+                <div class="menu-item"><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1766951594-1407%20FUDGE%20BROWNIE.JPG%3Fq%3D10&w=640&q=75" alt="brownie"><span class="item-name">Fudge Brownie</span><span class="item-badge">⭐ 4.9 | $5.5</span></div>
+                <div class="menu-item"><img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=200&h=200&fit=crop" alt="icecream"><span class="item-name">Ice Cream</span><span class="item-badge">⭐ 4.6 | $3.5</span></div>
+                <div class="menu-item"><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1766951508-1406%20CHOCOLATE%20LAVA%20CAKE.JPG%3Fq%3D10&w=640&q=75" alt="cake"><span class="item-name">Chocolate Lava Cake</span><span class="item-badge">⭐ 4.9 | $5.5</span></div>
+                <div class="menu-item"><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1771796675-1420THREEMILKCAKESLICE.JPG%3Fq%3D10&w=640&q=75" alt="cake"><span class="item-name">Cake Slice</span><span class="item-badge">⭐ 4.6 | $3.5</span></div>
+            </div></div></div>`
+        };
+
+        function showCategory(cat) {
+            const displayDiv = document.getElementById("foodDisplay");
+            const defaultCard = document.getElementById("defaultHomeCard");
+            if(defaultCard) defaultCard.style.display = "none";
+            if(categoryData[cat]) displayDiv.innerHTML = categoryData[cat];
+            else displayDiv.innerHTML = `<div class="card"><div class="popular-section"><div class="section-title">Coming Soon</div><p>More delicious items on the way!</p></div></div>`;
+            displayDiv.scrollIntoView({ behavior: "smooth" });
+        }
+
+        function searchFood() {
+            const query = document.getElementById("searchInput").value.toLowerCase().trim();
+            if(query === "") { alert("Please enter a food name"); return; }
+            let foundHtml = `<div class="card"><div class="popular-section"><div class="section-title">🔍 Search Results for "${query}"</div><div class="item-list">`;
+            let hasResults = false;
+            for(let cat in categoryData){
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = categoryData[cat];
+                tempDiv.querySelectorAll('.menu-item').forEach(item => {
+                    const nameEl = item.querySelector('.item-name');
+                    if(nameEl && nameEl.innerText.toLowerCase().includes(query)){
+                        foundHtml += item.outerHTML;
+                        hasResults = true;
+                    }
+                });
+            }
+            if(!hasResults) foundHtml += `<p style="padding:20px; text-align:center;">No items found for "${query}". Try burger, pizza, pasta etc.</p>`;
+            foundHtml += `</div></div></div>`;
+            document.getElementById("defaultHomeCard").style.display = "none";
+            document.getElementById("foodDisplay").innerHTML = foundHtml;
+            document.getElementById("foodDisplay").scrollIntoView({ behavior: "smooth" });
+        }
+
+        const popularList = [
+            { name: "🍝 ALFREDO FETTUCCINE PASTA", badge: "🔥 342", img: "https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1749404438-DSC09790.JPG%3Fq%3D10&w=828&q=75" },
+            { name: "🍗 CHICKEN TIKKA", badge: "⭐ 4.9", img: "https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1746736392-998%20CHICKEN%20TIKKA%20(CHEST).JPG%3Fq%3D10&w=828&q=75" },
+            { name: "🛒 ONLINE DEAL 08", badge: "🎁 -30%", img: "https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752784883-ONLINE%20DEAL%2008%20(3).JPG%3Fq%3D10&w=828&q=75" },
+            { name: "🥩 CHICKEN STEAK", badge: "🔥 218", img: "https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1746730743-DSC08630.JPG%3Fq%3D10&w=828&q=75" }
+        ];
+        
+        function renderPopularItems() {
+            const container = document.getElementById("popularItemsList");
+            if(container) container.innerHTML = popularList.map(item => `<div class="menu-item"><span class="item-name">${item.name}</span><span class="item-badge">${item.badge}</span><img src="${item.img}" alt="food"></div>`).join('');
+        }
+        renderPopularItems();
+
+        window.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("defaultHomeCard").style.display = "block";
+            document.getElementById("foodDisplay").innerHTML = "";
+        });
+    </script>
+</body>
+</html>
