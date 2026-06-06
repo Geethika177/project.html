@@ -734,21 +734,21 @@
             <div class="slide"><img alt="breakfast" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1777241588-BREAKFAST-NEW.jpeg%3Fver%3D10&amp;w=2048&amp;q=90"/></div>
             <div class="slide"><img alt="banner2" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1777241622-banner-a-jpg.jpeg%3Fver%3D10&amp;w=2048&amp;q=90"/></div>
         </div>
-        <button class="prev" onclick="prevSlide()">❮</button>
-        <button class="next" onclick="nextSlide()">❯</button>
+        <button class="prev" onclick="prevSlide()"></button>
+        <button class="next" onclick="nextSlide()"></button>
         <div class="dots"><span class="dot active" onclick="goToSlide(0)"></span><span class="dot" onclick="goToSlide(1)"></span><span class="dot" onclick="goToSlide(2)"></span></div>
     </div>
     
     <!-- FOOD CATEGORIES -->
     <div class="food-categories">
-        <div class="category" onclick="showCategory('burgers')"><img alt="burger" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137936-Artboard%25201%2520copy%25204.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>BURGERS</p></div>
-        <div class="category" onclick="showCategory('sandwiches')"><img alt="sandwich" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137831-Artboard%25201%2520copy%25205.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>SANDWICHES</p></div>
-        <div class="category" onclick="showCategory('noodles')"><img alt="noodles" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137995-Artboard%25201%2520copy%252014.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>NOODLES</p></div>
-        <div class="category" onclick="showCategory('italian')"><img alt="italian" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137120-Artboard%25201%2520copy%25209.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>ITALIAN</p></div>
-        <div class="category" onclick="showCategory('chinese')"><img alt="chinese" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137874-Artboard%25201%2520copy%252015.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>CHINESE</p></div>
-        <div class="category" onclick="showCategory('rolls')"><img alt="rolls" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137084-Artboard%25201%2520copy%252017.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>ROLLS</p></div>
-        <div class="category" onclick="showCategory('beverages')"><img alt="beverages" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137772-Artboard%25201%2520copy%252022.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>HOT BEVERAGES</p></div>
-        <div class="category" onclick="showCategory('desserts')"><img alt="desserts" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1766293444-Dessert%2520Affair.jpg%3Fq%3D10&amp;w=256&amp;q=75"/><p>DESSERTS</p></div>
+        <div class="category" onclick="scrollToSection('burgers')"><img alt="burger" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137936-Artboard%25201%2520copy%25204.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>BURGERS</p></div>
+        <div class="category" onclick="scrollToSection('sandwiches')"><img alt="sandwich" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137831-Artboard%25201%2520copy%25205.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>SANDWICHES</p></div>
+        <div class="category" onclick="scrollToSection('noodles')"><img alt="noodles" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137995-Artboard%25201%2520copy%252014.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>NOODLES</p></div>
+        <div class="category" onclick="scrollToSection('italian')"><img alt="italian" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137120-Artboard%25201%2520copy%25209.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>ITALIAN</p></div>
+        <div class="category" onclick="scrollToSection('chinese')"><img alt="chinese" src="chineese.png"/><p>CHINESE</p></div>
+        <div class="category" onclick="scrollToSection('rolls')"><img alt="rolls" src="rolls.png"/><p>ROLLS</p></div>
+        <div class="category" onclick="scrollToSection('beverages')"><img alt="beverages" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1728137772-Artboard%25201%2520copy%252022.png%3Fq%3D10&amp;w=256&amp;q=75"/><p>HOT BEVERAGES</p></div>
+        <div class="category" onclick="scrollToSection('desserts')"><img alt="desserts" src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1766293444-Dessert%2520Affair.jpg%3Fq%3D10&amp;w=256&amp;q=75"/><p>DESSERTS</p></div>
     </div>
     
     <!-- SEARCH SECTION -->
@@ -807,7 +807,7 @@
 
         // ------------- FIXED CATEGORY DATA (All strings properly wrapped) -------------
         const categoryData = {
-            burgers: `<div class="card"><div class="popular-section"><div class="section-title">🍔 Burgers</div><div class="section-sub">Juicy & grilled</div><div class="item-list">
+            burgers: `<div class="card" id="burgers"><div class="popular-section"><div class="section-title">🍔 Burgers</div><div class="section-sub">Juicy & grilled</div><div class="item-list">
                 <div class="menu-item"><span class="item-name">Classic Beef Burger</span><span class="item-badge">⭐ 4.8 | $8.9</span><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&h=200&fit=crop" alt="burger"></div>
                 <div class="menu-item"><span class="item-name">Cheesy Chicken Burger</span><span class="item-badge">🔥 4.9 | $9.5</span><img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=200&h=200&fit=crop" alt="burger"></div>
                 <div class="menu-item"><span class="item-name">Spicy Crunch Burger</span><span class="item-badge">⭐ 4.7 | $8.2</span><img src="https://images.unsplash.com/photo-1550317138-10000687a72b?w=200&h=200&fit=crop" alt="burger"></div>
@@ -815,27 +815,27 @@
                 <div class="menu-item"><span class="item-name">Paneer Tikka Burger</span><span class="item-badge">🔥 4.9 | $9.5</span><img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=200&h=200&fit=crop" alt="burger"></div>
                 <div class="menu-item"><span class="item-name">Pav Bhaji Burger</span><span class="item-badge">⭐ 4.7 | $8.2</span><img src="https://i.pinimg.com/474x/a4/0f/46/a40f46b7d37ea035561455ef1df399c9.jpg" alt="burger"></div>
             </div></div></div>`,
-            sandwiches: `<div class="card"><div class="popular-section"><div class="section-title">🥪 Sandwiches</div><div class="section-sub">Fresh & healthy</div><div class="item-list">
+            sandwiches: `<div class="card" id="sandwiches"><div class="popular-section"><div class="section-title">🥪 Sandwiches</div><div class="section-sub">Fresh & healthy</div><div class="item-list">
                 <div class="menu-item"><span class="item-name">Grilled Chicken Sandwich</span><span class="item-badge">⭐ 4.7 | $7.2</span><img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop" alt="sandwich"></div>
                 <div class="menu-item"><span class="item-name">Paneer Tikka Sandwich</span><span class="item-badge">⭐ 4.6 | $6.5</span><img src="https://images.unsplash.com/photo-1553909489-cd47e0907980?w=200&h=200&fit=crop" alt="sandwich"></div>
                 <div class="menu-item"><span class="item-name">Club Sandwich</span><span class="item-badge">⭐ 4.6 | $6.5</span><img src="https://images.unsplash.com/photo-1553909489-cd47e0907980?w=200&h=200&fit=crop" alt="sandwich"></div>
                 <div class="menu-item"><span class="item-name">Malai Club Sandwich</span><span class="item-badge">⭐ 4.6 | $6.5</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1749482151-MALAI%202-JUNE-2025%20(2).JPG%3Fq%3D10&w=640&q=75" alt="sandwich"></div>
                 <div class="menu-item"><span class="item-name">Fajita Sandwich</span><span class="item-badge">⭐ 4.6 | $6.5</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1746644955-306%20FAJITA%20SANDWICH.JPG%3Fq%3D10&w=640&q=75" alt="sandwich"></div>
             </div></div></div>`,
-            noodles: `<div class="card"><div class="popular-section"><div class="section-title">🍜 Noodles</div><div class="section-sub">Asian style</div><div class="item-list">
+            noodles: `<div class="card" id="noodles"><div class="popular-section"><div class="section-title">🍜 Noodles</div><div class="section-sub">Asian style</div><div class="item-list">
                 <div class="menu-item"><span class="item-name">Hakka Noodles</span><span class="item-badge">⭐ 4.7 | $8.0</span><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&h=200&fit=crop" alt="noodles"></div>
                 <div class="menu-item"><span class="item-name">Singapore Noodles</span><span class="item-badge">⭐ 4.8 | $9.2</span><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=200&h=200&fit=crop" alt="noodles"></div>
                 <div class="menu-item"><span class="item-name">Chicken Chowmein</span><span class="item-badge">⭐ 4.8 | $9.2</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752779236-CHICKEN%20CHOWMEIN.JPG%3Fq%3D10&w=640&q=75" alt="noodles"></div>
                 <div class="menu-item"><span class="item-name">Vegetable Chowmein</span><span class="item-badge">⭐ 4.8 | $9.2</span><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=200&h=200&fit=crop" alt="noodles"></div>
             </div></div></div>`,
-            italian: `<div class="card"><div class="popular-section"><div class="section-title">🇮🇹 Italian</div><div class="section-sub">Italian specials</div><div class="item-list">
+            italian: `<div class="card" id="italian"><div class="popular-section"><div class="section-title">🇮🇹 Italian</div><div class="section-sub">Italian specials</div><div class="item-list">
                 <div class="menu-item"><span class="item-name">Alfredo Pasta</span><span class="item-badge">⭐ 4.9 | $11.9</span><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop" alt="pasta"></div>
                 <div class="menu-item"><span class="item-name">Margherita Pizza</span><span class="item-badge">⭐ 4.8 | $10.5</span><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop" alt="pizza"></div>
                 <div class="menu-item"><span class="item-name">White Sauce Pasta</span><span class="item-badge">⭐ 4.7 | $10.2</span><img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=200&h=200&fit=crop" alt="pasta"></div>
                 <div class="menu-item"><span class="item-name">Vellutata di zucca</span><span class="item-badge">⭐ 4.7 | $10.2</span><img src="https://www.tasteatlas.com/images/dishes/071514f0f6084fddba288c3756d88a9a.jpg?mw=1300" alt="soup"></div>
                 <div class="menu-item"><span class="item-name">Kürbis Suppe</span><span class="item-badge">⭐ 4.7 | $10.2</span><img src="https://www.tasteatlas.com/images/dishes/43d61c40dd0043d09b7941475cc39eed.jpg?mw=1300" alt="soup"></div>
             </div></div></div>`,
-            chinese: `<div class="card"><div class="popular-section"><div class="section-title">🥢 Chinese</div><div class="section-sub">Spicy wok</div><div class="item-list">
+            chinese: `<div class="card" id="chinese"><div class="popular-section"><div class="section-title">🥢 Chinese</div><div class="section-sub">Spicy wok</div><div class="item-list">
                 <div class="menu-item"><span class="item-name">Fried Rice</span><span class="item-badge">⭐ 4.8 | $8.4</span><img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=200&h=200&fit=crop" alt="rice"></div>
                 <div class="menu-item"><span class="item-name">Manchurian</span><span class="item-badge">⭐ 4.7 | $7.9</span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGb18ykYxTxIiIOGbIiTRaRJs2VsATNmvGkQ&s" alt="manchurian"></div>
                 <div class="menu-item"><span class="item-name">Schezwan Noodles</span><span class="item-badge">⭐ 4.6 | $9.1</span><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=200&h=200&fit=crop" alt="noodles"></div>
@@ -843,7 +843,7 @@
                 <div class="menu-item"><span class="item-name">Dim Sum</span><span class="item-badge">⭐ 4.7 | $7.9</span><img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?w=200&h=200&fit=crop" alt="dimsum"></div>
                 <div class="menu-item"><span class="item-name">Wonton Soup</span><span class="item-badge">⭐ 4.6 | $9.1</span><img src="https://www.allrecipes.com/thmb/oiO3k3uir05bhdLXCDh9lnEob8Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/ALR-13199-wonton-soup-VAT-4x3-31bd1ef2795144ee93fed67a1cf3743d.jpg" alt="soup"></div>
             </div></div></div>`,
-            rolls: `<div class="card"><div class="popular-section"><div class="section-title">🌯 Rolls</div><div class="section-sub">Wrap & Roll</div><div class="item-list">
+            rolls: `<div class="card" id="rolls"><div class="popular-section"><div class="section-title">🌯 Rolls</div><div class="section-sub">Wrap & Roll</div><div class="item-list">
                 <div class="menu-item"><span class="item-name">Chicken Roll</span><span class="item-badge">⭐ 4.8 | $6.5</span><img src="https://images.unsplash.com/photo-1530469912745-a215c6b256ea?w=200&h=200&fit=crop" alt="roll"></div>
                 <div class="menu-item"><span class="item-name">Paneer Roll</span><span class="item-badge">⭐ 4.6 | $5.9</span><img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=200&h=200&fit=crop" alt="roll"></div>
                 <div class="menu-item"><span class="item-name">Crispy Roll</span><span class="item-badge">⭐ 4.8 | $6.5</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752786013-CRISPY%20ROLL.JPG%3Fq%3D10&w=640&q=75" alt="roll"></div>
@@ -851,15 +851,15 @@
                 <div class="menu-item"><span class="item-name">Malai Boti Roll</span><span class="item-badge">⭐ 4.8 | $6.5</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752785952-MALAI%20BOTI%20ROLL.JPG%3Fq%3D10&w=640&q=75" alt="roll"></div>
                 <div class="menu-item"><span class="item-name">Beef Boti Roll</span><span class="item-badge">⭐ 4.6 | $5.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1752785905-BEEF%20BOTI%20ROLL.JPG%3Fq%3D10&w=640&q=75" alt="roll"></div>
             </div></div></div>`,
-            beverages: `<div class="card"><div class="popular-section"><div class="section-title">☕ Hot Beverages</div><div class="section-sub">Warm & cozy</div><div class="item-list">
+            beverages: `<div class="card" id="beverages"><div class="popular-section"><div class="section-title">☕ Hot Beverages</div><div class="section-sub">Warm & cozy</div><div class="item-list">
                 <div class="menu-item"><span class="item-name">Cappuccino</span><span class="item-badge">⭐ 4.9 | $3.9</span><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop" alt="coffee"></div>
-                <div class="menu-item"><span class="item-name">Green Tea</span><span class="item-badge">⭐ 4.5 | $2.9</span><img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=200&h=200&fit=crop" alt="tea"></div>
+                <div class="menu-item"><span class="item-name">Green Tea</span><span class="item-badge">⭐ 4.5 | $2.9</span><img src="https://i.pinimg.com/736x/85/0e/41/850e418cf6e72a97168e67080312b431.jpg" alt="tea"></div>
                 <div class="menu-item"><span class="item-name">Cafe Latte</span><span class="item-badge">⭐ 4.9 | $3.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1746715040-DSC08985.JPG%3Fq%3D10&w=640&q=75" alt="latte"></div>
                 <div class="menu-item"><span class="item-name">Strawberry Crunch Royale</span><span class="item-badge">⭐ 4.5 | $2.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1779913909-1314STRAWBERRYCRUNCHROYALE.jpg%3Fq%3D10&w=640&q=75" alt="shake"></div>
                 <div class="menu-item"><span class="item-name">Vanilla Caramel Shake</span><span class="item-badge">⭐ 4.9 | $3.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1746724143-DSC08924.JPG%3Fq%3D10&w=640&q=75" alt="shake"></div>
                 <div class="menu-item"><span class="item-name">Oreo Frappe</span><span class="item-badge">⭐ 4.5 | $2.9</span><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1749407620-DSC09824.0.JPG%3Fq%3D10&w=640&q=75" alt="frappe"></div>
             </div></div></div>`,
-            desserts: `<div class="card"><div class="popular-section"><div class="section-title">🍰 Desserts</div><div class="section-sub">Sweet tooth</div><div class="item-list">
+            desserts: `<div class="card" id="desserts"><div class="popular-section"><div class="section-title">🍰 Desserts</div><div class="section-sub">Sweet tooth</div><div class="item-list">
                 <div class="menu-item"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=200&fit=crop" alt="cake"><span class="item-name">Chocolate Cake</span><span class="item-badge">⭐ 4.9 | $5.5</span></div>
                 <div class="menu-item"><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1767985935-1425%20KUNAFA.JPG%3Fq%3D10&w=640&q=75" alt="kunafa"><span class="item-name">Kunafa</span><span class="item-badge">⭐ 4.6 | $3.5</span></div>
                 <div class="menu-item"><img src="https://foodsinn.co/_next/image?url=https%3A%2F%2Fassets.indolj.io%2Fupload%2F1766951594-1407%20FUDGE%20BROWNIE.JPG%3Fq%3D10&w=640&q=75" alt="brownie"><span class="item-name">Fudge Brownie</span><span class="item-badge">⭐ 4.9 | $5.5</span></div>
@@ -918,6 +918,41 @@
             document.getElementById("defaultHomeCard").style.display = "block";
             document.getElementById("foodDisplay").innerHTML = "";
         });
+        function showAllCategories() {
+    const displayDiv = document.getElementById("foodDisplay");
+
+    const order = [
+        "burgers",
+        "sandwiches",
+        "noodles",
+        "italian",
+        "chinese",
+        "rolls",
+        "beverages",
+        "desserts"
+    ];
+
+    let html = "";
+
+    order.forEach(cat => {
+        html += categoryData[cat];
+    });
+
+    displayDiv.innerHTML = html;
+}
+window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("defaultHomeCard").style.display = "block";
+    showAllCategories();
+});
+function scrollToSection(category) {
+    const section = document.getElementById(category);
+
+    if (section) {
+        section.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+} 
     </script>
 </body>
 </html>
